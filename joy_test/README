@@ -1,0 +1,4 @@
+#joy_test用于将ros中的joy数据类型转换为小车运动指令/cmd_vel.
+rosrun joy_test joy_test
+rosrun joy joy_node#将joy设备数据转换为ROS中的joy数据类型。
+rosrun xqserial_server0 xqserial_server0 #ROS通过串口与开发板通信,将/cmd_vel速度消息转换为命令发给串口

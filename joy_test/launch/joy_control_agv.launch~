@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="joy" type="joy_node" name="joy_node"/>
+  <node pkg="joy_test" type="joy_test" name="joy_test"/>
+  <node pkg="xqserial_server0" type="xqserial_server0" name="xqserial_server0">
+  </node>
+</launch>
