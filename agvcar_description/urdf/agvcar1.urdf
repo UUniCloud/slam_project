@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<robot name="agvcar">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="1.46 0.45 0.27"/>
+    </geometry>
+    <origin rpy="0 0 0" />
+    <material name="blue">
+        <color rgba="0 0 150 0.9"/>
+    </material>
+    </visual>
+ </link>
+
+ <link name="front_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.058" radius="0.091"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_front_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_wheel"/>
+    <origin rpy="1.57075  0  0" xyz="0.27 0.0 -0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="right_back_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.08"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_back_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="right_back_wheel"/>
+    <origin rpy="1.57075 0 0" xyz="-0.67 0.187 -0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+ </joint>
+
+  <link name="left_back_wheel">
+    <visual>
+      <geometry>
+        <cylinder length=".04" radius="0.08"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="left_back_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="left_back_wheel"/>
+    <origin rpy="1.57075 0  0" xyz=" -0.67 -0.187 -0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="base_laser">
+    <visual>
+      <geometry>
+        <cylinder length=".15" radius="0.05"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+  
+  <joint name="base_laser_joint" type="fixed">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child  link="base_laser"/>
+    <origin rpy="0  0  0" xyz="-0.33  0.0  0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+  
+  <link name="head">
+    <visual>
+      <geometry>
+        <box size=".45 .045 .08"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="tobox" type="fixed">
+    <parent link="base_link"/>
+    <child link="head"/>
+    <origin rpy="0 0 1.57075"  xyz="0.73 0.0 0.0"/>
+  </joint>
+</robot>

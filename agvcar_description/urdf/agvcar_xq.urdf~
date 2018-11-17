@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<robot name="agvcar">
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="1.46 0.45 0.27"/>
+    </geometry>
+    <origin rpy="0 0 0" />
+    <material name="blue">
+        <color rgba="0 0 150 0.9"/>
+    </material>
+    </visual>
+ </link>
+
+ <link name="front_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.058" radius="0.091"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="base_front_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="front_wheel"/>
+    <origin rpy="1.57075  0  0" xyz="0.27 0.0 -0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link name="right_back_wheel">
+    <visual>
+      <geometry>
+        <cylinder length="0.04" radius="0.08"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="right_back_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="right_back_wheel"/>
+    <origin rpy="1.57075 0 0" xyz="-0.67 0.187 -0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+ </joint>
+
+  <link name="left_back_wheel">
+    <visual>
+      <geometry>
+        <cylinder length=".04" radius="0.08"/>
+      </geometry>
+      <material name="black">
+        <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="left_back_wheel_joint" type="continuous">
+    <axis xyz="0 0 1"/>
+    <parent link="base_link"/>
+    <child link="left_back_wheel"/>
+    <origin rpy="1.57075 0  0" xyz=" -0.67 -0.187 -0.14"/>
+    <limit effort="100" velocity="100"/>
+    <joint_properties damping="0.0" friction="0.0"/>
+  </joint>
+
+  <link
+    name="lidar_link">
+    <inertial>
+      <mass
+        value="0.0984481070530837" />
+      <inertia
+        ixx="4.2386839484693E-05"
+        ixy="-5.06324613218956E-08"
+        ixz="-5.39378523128128E-12"
+        iyy="7.73338874867687E-05"
+        iyz="1.20386780457707E-11"
+        izz="4.14171570330327E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://xiaoqiang_udrf/meshes/lidar_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.29412 0.29412 0.29412 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://agvcar_description/meshes/lidar_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_laser_joint"
+    type="continuous">
+    <origin rpy="0  0  0" xyz="-0.33  0.0  0.14"/>
+    <parent
+      link="base_link" />
+    <child
+      link="lidar_link" />
+    <axis
+      xyz="0 1 0" />
+  </joint>
+  
+  <link name="head">
+    <visual>
+      <geometry>
+        <box size=".45 .045 .08"/>
+      </geometry>
+      <material name="black">
+          <color rgba="0 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="tobox" type="fixed">
+    <parent link="base_link"/>
+    <child link="head"/>
+    <origin rpy="0 0 1.57075"  xyz="0.73 0.0 0.0"/>
+  </joint>
+</robot>

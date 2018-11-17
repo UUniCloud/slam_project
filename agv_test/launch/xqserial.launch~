@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="agv_v3" type="agv_v3" name="agv_v3" />
+    <param name="debug_flag" value="false"/>
+    <param name="port" value="/dev/ttyUSB002"/>
+  <node pkg="joy" type="joy_node" name="joy_node" />
+  <node pkg="joy_test" type="joy_test" name="joy_test" >
+  </node>
+  <node pkg="tf" type="static_transform_publisher" name="baselink_broadcaster" args="0 0 0.15 0 0 0 1 base_footprint base_link 50">
+  </node>
+</launch>
